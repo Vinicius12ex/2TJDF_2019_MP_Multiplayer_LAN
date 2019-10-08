@@ -3,7 +3,11 @@ guid: 2a2274d0463d6244d84a29a6fa6773a3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - laranja: {instanceID: 0}
+  - rosa: {instanceID: 0}
+  - cuboPrefab: {fileID: 8635286468373237675, guid: 52909fd43b80fed4ea4f3fbcafb98f28,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
