@@ -11,6 +11,9 @@ public class PlayerController : NetworkBehaviour
     public float velocidade = 300f;
     public GameObject cuboPrefab;
 
+    private static int playerIdAvailable;
+    [SyncVar]private int playerId;
+
     private void Start()
     {
         Material material = null;
@@ -34,6 +37,18 @@ public class PlayerController : NetworkBehaviour
 
         var meshRender = GetComponent<MeshRenderer>();
         meshRender.material = material;
+
+        if (isServer)
+        {
+            if (isLocalPlayer)
+            {
+                playerIdAvailable = 0;
+            }
+
+            playerIdAvailable++;
+
+            playerId = playerIdAvailable;
+        }
 
 
     }
@@ -65,6 +80,9 @@ public class PlayerController : NetworkBehaviour
 
         cubo.transform.position = transform.position + (transform.forward * 2);
         cubo.transform.rotation = transform.rotation;
+
+
+        cubo.GetComponent<cubo>().creatorId = playerId;
 
         NetworkServer.Spawn(cubo);
     }
